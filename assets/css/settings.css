@@ -1,0 +1,119 @@
+/* ================================================
+   geminy.me v5.5 — Settings (Instagram iOS 2025)
+   ================================================ */
+body { padding-bottom: 90px; }
+
+.set-header {
+    position: sticky; top: 0; z-index: 900;
+    background: rgba(10,10,15,.93); backdrop-filter: blur(28px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; height: 52px;
+}
+.set-back { color: var(--text); font-size: 1.3rem; text-decoration: none; width: 40px; display: flex; align-items: center; }
+.set-header h1 { font-size: 1rem; font-weight: 800; flex: 1; text-align: center; }
+
+/* Profil Özeti */
+.set-profile-summary {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 22px 16px 16px; gap: 6px; border-bottom: 1px solid var(--border);
+}
+.set-sum-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: conic-gradient(var(--pink), var(--cyan), var(--purple), var(--pink));
+    padding: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;
+}
+.set-sum-avatar img { width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 50%; object-fit: cover; border: 2px solid var(--bg); }
+.set-sum-name   { font-weight: 800; font-size: 1rem; }
+.set-sum-handle { font-size: .78rem; color: var(--muted); }
+.set-sum-email  { font-size: .72rem; color: var(--muted); display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+
+/* Tab Bar */
+.set-tabbar {
+    display: flex; overflow-x: auto; gap: 0; border-bottom: 1px solid var(--border);
+    scrollbar-width: none; background: rgba(10,10,15,.6);
+    position: sticky; top: 52px; z-index: 800; backdrop-filter: blur(20px);
+}
+.set-tabbar::-webkit-scrollbar { display: none; }
+.set-tab {
+    flex: 0 0 auto; display: flex; flex-direction: column; align-items: center;
+    gap: 3px; padding: 10px 16px; text-decoration: none; color: var(--muted);
+    font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+    border-bottom: 2px solid transparent; transition: .2s; white-space: nowrap;
+}
+.set-tab i { font-size: 1.1rem; }
+.set-tab.active { color: var(--pink); border-bottom-color: var(--pink); }
+.set-tab:hover  { color: var(--text); }
+
+/* Body */
+.set-body { padding: 16px 16px 0; }
+.set-flash { margin-bottom: 16px; }
+
+/* Avatar önizleme */
+.set-avatar-preview-row {
+    display: flex; align-items: center; gap: 14px; padding: 14px 16px; margin-bottom: 16px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+}
+.set-avatar-ring {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: conic-gradient(var(--pink), var(--cyan), var(--purple), var(--pink));
+    padding: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;
+}
+.set-avatar-ring img { width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 50%; object-fit: cover; border: 2px solid var(--bg); }
+.set-avatar-hint span { font-weight: 700; font-size: .88rem; display: block; }
+.set-avatar-hint small { font-size: .7rem; color: var(--muted); }
+
+/* Groups */
+.set-section-label { font-size: .62rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.8px; padding: 0 4px; margin: 18px 0 6px; }
+.set-group { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.set-row { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.set-row:last-child { border-bottom: none; }
+.set-row label { display: block; font-size: .62rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 5px; }
+.set-input { background: transparent; border: none; color: var(--text); font-family: 'Outfit', sans-serif; font-size: .93rem; width: 100%; outline: none; padding: 2px 0; }
+.set-input::placeholder { color: rgba(255,255,255,.22); }
+.set-input-ro { color: var(--muted); cursor: not-allowed; }
+.set-textarea { resize: none; min-height: 56px; line-height: 1.55; }
+.set-char-count { font-size: .65rem; color: var(--muted); text-align: right; margin-top: 4px; }
+
+/* Social */
+.set-social-row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; }
+.set-social-row label { display: block; font-size: .6rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.set-social-icon { font-size: 1.25rem; flex-shrink: 0; width: 22px; text-align: center; }
+.set-social-row .set-input { padding: 0; }
+
+/* Music preview */
+.set-song-preview { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 14px; background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.18); border-radius: 14px; }
+.set-song-cover { width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0; background: linear-gradient(135deg, var(--purple), var(--pink)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: rgba(255,255,255,.5); overflow: hidden; position: relative; }
+.set-song-cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.set-song-wave { position: absolute; bottom: 3px; right: 3px; display: flex; align-items: flex-end; gap: 1.5px; }
+.set-song-wave span { width: 2.5px; background: rgba(255,255,255,.85); border-radius: 2px; animation: wave 1.2s ease-in-out infinite; }
+.set-song-wave span:nth-child(1){height:5px;animation-delay:0s}.set-song-wave span:nth-child(2){height:9px;animation-delay:.2s}.set-song-wave span:nth-child(3){height:6px;animation-delay:.4s}.set-song-wave span:nth-child(4){height:11px;animation-delay:.1s}.set-song-wave span:nth-child(5){height:4px;animation-delay:.3s}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.8)}}
+
+/* Toggle */
+.set-toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+.set-toggle-label { font-weight: 700; font-size: .93rem; }
+.set-toggle-sub   { font-size: .73rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.set-toggle { position: relative; display: inline-block; width: 50px; height: 28px; flex-shrink: 0; }
+.set-toggle input { opacity: 0; width: 0; height: 0; }
+.set-toggle-slider { position: absolute; inset: 0; cursor: pointer; background: rgba(255,255,255,.1); border-radius: 28px; border: 1px solid var(--border); transition: .3s; }
+.set-toggle-slider::before { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: .3s; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+.set-toggle input:checked + .set-toggle-slider { background: var(--pink); border-color: var(--pink); box-shadow: 0 0 8px rgba(233,30,140,.4); }
+.set-toggle input:checked + .set-toggle-slider::before { transform: translateX(22px); }
+
+/* Password */
+.set-pass-wrap { position: relative; display: flex; align-items: center; }
+.set-pass-wrap .set-input { padding-right: 36px; }
+.set-eye { position: absolute; right: 0; background: none; border: none; color: var(--muted); cursor: pointer; font-size: .95rem; padding: 4px; }
+
+/* Info box */
+.set-info-box { display: flex; align-items: flex-start; gap: 8px; background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.15); border-radius: 12px; padding: 11px 14px; font-size: .78rem; color: var(--muted); line-height: 1.5; margin-top: 10px; }
+.set-info-box i { flex-shrink: 0; margin-top: 1px; color: var(--cyan); }
+
+/* Buttons */
+.set-save-btn { display: block; width: 100%; background: linear-gradient(135deg, var(--pink), var(--purple)); border: none; border-radius: 14px; color: #fff; font-weight: 800; font-size: .95rem; padding: 15px 20px; cursor: pointer; font-family: 'Outfit', sans-serif; margin-top: 16px; box-shadow: 0 4px 20px rgba(233,30,140,.3); transition: .25s; }
+.set-save-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(233,30,140,.45); }
+.set-save-btn-secondary { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); box-shadow: none; }
+.set-save-btn-secondary:hover { background: rgba(255,255,255,.08); box-shadow: none; transform: none; }
+.set-danger-btn { display: flex; align-items: center; gap: 10px; padding: 15px 16px; color: var(--red); font-weight: 700; font-size: .93rem; text-decoration: none; transition: background .2s; }
+.set-danger-btn:hover { background: rgba(239,68,68,.06); }

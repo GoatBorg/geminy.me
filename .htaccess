@@ -1,0 +1,71 @@
+Options -Indexes
+RewriteEngine On
+
+# ── HTTPS Zorla ──────────────────────────────────────────────
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ── Gerçek dosya/dizin varsa dokunma ─────────────────────────
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ── URL Rotaları ─────────────────────────────────────────────
+RewriteRule ^profile/([a-z0-9_]+)/?$    profile.php?u=$1        [QSA,L]
+RewriteRule ^search/?$                   search/index.php        [QSA,L]
+RewriteRule ^messages/?$                 app/messages/index.php  [QSA,L]
+RewriteRule ^dm/([a-z0-9_]+)/?$         app/dm/index.php?with=$1 [QSA,L]
+RewriteRule ^notifications/?$            app/notifications/index.php [QSA,L]
+RewriteRule ^settings/?$                 app/settings/index.php  [QSA,L]
+RewriteRule ^reset/?$                    app/reset/index.php     [QSA,L]
+
+# ── Hassas dosyalara erişim yasağı ───────────────────────────
+# app/config.php, SQL klasörü, smtp şifreleri, readme dosyaları
+RewriteRule ^app/config\.php$           - [F,L]
+RewriteRule ^app/smtp/                  - [F,L]
+RewriteRule ^SQL/                       - [F,L]
+RewriteRule ^\.git/                     - [F,L]
+RewriteRule ^composer\.(json|lock)$     - [F,L]
+RewriteRule ^package(-lock)?\.json$     - [F,L]
+RewriteRule \.(md|sql|env|bak|log|sh)$ - [F,L]
+
+# ── Path traversal koruması ───────────────────────────────────
+RewriteCond %{QUERY_STRING} (\.\./|\.\.%2F) [NC]
+RewriteRule ^ - [F,L]
+
+# ── SQL injection / zararlı query string koruması ────────────
+RewriteCond %{QUERY_STRING} (union|select|insert|drop|delete|update|cast|exec|declare) [NC]
+RewriteRule ^ - [F,L]
+
+# ── User-Agent bot/scanner engeli ────────────────────────────
+RewriteCond %{HTTP_USER_AGENT} (sqlmap|nikto|nmap|masscan|burpsuite|dirbuster|gobuster) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^$ [NC]
+RewriteRule ^ - [F,L]
+
+# ── Güvenlik Başlıkları ───────────────────────────────────────
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options   "nosniff"
+    Header set X-Frame-Options          "SAMEORIGIN"
+    Header set X-XSS-Protection         "1; mode=block"
+    Header set Referrer-Policy          "strict-origin-when-cross-origin"
+    Header set Permissions-Policy       "geolocation=(), microphone=(), camera=()"
+    # Content Security Policy (gerekirse genişlet)
+    Header set Content-Security-Policy  "default-src 'self' https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src * data:;"
+</IfModule>
+
+# ── PHP hata gösterimi kapat (üretim) ────────────────────────
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log /tmp/geminy_errors.log
+</IfModule>
+
+# ── Dosya türü kısıtlamaları ──────────────────────────────────
+<FilesMatch "\.(php|phtml|php3|php4|php5|phar)$">
+    # PHP dışında php çalıştırma
+</FilesMatch>
+
+# ── Büyük istek limiti (spam form koruması) ───────────────────
+<IfModule mod_security.c>
+    SecRequestBodyLimit 2097152
+</IfModule>
