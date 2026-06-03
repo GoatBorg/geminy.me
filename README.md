@@ -10,7 +10,7 @@
   </a>
 </p>
 
-`VERSION` | `V5.5 | `PRODUCTION READY
+`VERSION` | V5.5 | PRODUCTION READY
 
 ---
 
@@ -24,17 +24,17 @@
 <div align="center">
 
 <img src="755/1.png" width="40" align="left" />
-Lock Screen & PIN Sistemi
+Özgür
 
 ---
 
 <img src="755/2.png" width="40" align="left" />
-iOS Ayarlar Paneli
+Kişisel
 
 ---
 
 <img src="755/3.png" width="40" align="left" />
-Safari Tarayıcı Deneyimi
+Hızlı
 
 ---
 
@@ -54,7 +54,7 @@ Safari Tarayıcı Deneyimi
 
 ---
 
-## 🛠 KURULUM (STEP BY STEP)
+## 🛠 KURULUM 
 
 `Adım 1: Veritabanı` **SQL/database.sql**
 *   `SQL/new.sql` dosyasını phpMyAdmin veya MySQL panelinden içeri aktarın.
