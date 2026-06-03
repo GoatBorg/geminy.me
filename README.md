@@ -68,7 +68,6 @@ Safari Tarayıcı Deneyimi
     ```
 
 `Adım 3: Yükleme` **public_html**
-*   Tüm dosyaları hostinginizin ana dizinine yükleyin.
 
 ---
 
