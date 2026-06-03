@@ -1,22 +1,21 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/melissaroseria/geminy.me/refs/heads/main/assets/js/775.png" alt="Geminy Banner" width="280"/>
+  <img src="https://raw.githubusercontent.com/melissaroseria/geminy.me/refs/heads/main/assets/js/775.png" alt="Geminy Banner" width="250"/>
 </p>
 
-# 💎 GEMINY.ME `v4.0`
-### "Gizliliğin Zırhı, Anonimliğin Kalp Atışı"
+# 💎 GEMINY.ME 
 
 <p align="center">
   <a href="https://geminyask.unaux.com/index.php">
-    <img src="https://img.shields.io/badge/DEMO_WEB_ADRES-Hemen_İncele-ff2d72?style=for-the-badge&logo=heart&logoColor=white" alt="Demo"/>
+    <img src="https://img.shields.io/badge/WEB_ADRES-İncele-ff2d72?style=for-the-badge&logo=heart&logoColor=white" alt="Demo"/>
   </a>
 </p>
 
-`VERSION` | `V4.0 - SAPASAĞLAM` | `STATUS` | `PRODUCTION READY`
+`VERSION` | `V5.5 | `PRODUCTION READY
 
 ---
 
-## 🎭 CIĞERINI BILDIĞIMIZ SISTEM
-> Platonik aşıkların, kimlik dayatmalarından bıkanların ve özgürce soru sormak isteyenlerin kalesi. Bu proje, sosyal medya devlerinin "kimlik zorunluluğu" prangalarını kıran, Monero felsefesiyle harmanlanmış bağımsız bir başkaldırıdır.
+## 🎭 BİLİNEN SISTEM
+> Platonik aşıkların, kimlik dayatmalarından bıkanların ve özgürce soru sormak isteyenlerin kalesi.
 
 ---
 
@@ -25,17 +24,17 @@
 <div align="center">
 
 <img src="755/1.png" width="40" align="left" />
-`Lock Screen & PIN Sistemi`
+Lock Screen & PIN Sistemi
 
 ---
 
 <img src="755/2.png" width="40" align="left" />
-`iOS Ayarlar Paneli`
+iOS Ayarlar Paneli
 
 ---
 
 <img src="755/3.png" width="40" align="left" />
-`Safari Tarayıcı Deneyimi`
+Safari Tarayıcı Deneyimi
 
 ---
 
@@ -48,14 +47,10 @@
 ## 🚀 V4 PREMIUM YENILIKLER
 
 `MODERN UI` **Instagram & iOS Hissiyatı**
-*   **Karanlık/Aydınlık Mod:** Göz yormayan, otomatik ve manuel geçişli premium tasarım.
-*   **Glassmorphism:** Buzlu cam efektli modern kartlar ve yumuşak geçişler.
-*   **Sabit Mesaj Barı:** Web tarayıcılarında kaybolmayan, stabil mesaj yazma alanı.
+*   **Karanlık/Aydınlık Mod:** Göz yormayan, otomatik premium tasarım.
 
 `GIZLILIK` **Mahremiyet Senin Hakkın**
 *   **Gizli Hesap Koruması:** Gizli hesapların soruları ana akışta görünmez.
-*   **2FA (Çift Faktör):** Google Authenticator (TOTP) veya E-posta OTP ile tam koruma.
-*   **AJAX Arama:** Sayfa yenilenmeden, anlık ve hızlı keşfetme motoru.
 
 ---
 
@@ -72,13 +67,13 @@
     'db_pass' => 'sifren'
     ```
 
-`Adım 3: Yükleme` **htdocs**
+`Adım 3: Yükleme` **public_html**
 *   Tüm dosyaları hostinginizin ana dizinine yükleyin.
 
 ---
 
 ## 🛡 GÜVENLIK NOTLARI
-> **Önemli:** v4 sürümüyle birlikte `.htaccess` kuralları sayesinde `.sql`, `.log` ve `config.php` gibi dosyalar dışarıdan erişime tamamen kapatılmıştır. Ciğerini bildiğimiz bu sistem artık daha güvenli!
+> **Önemli:** v5.5 sürümüyle birlikte   dışarıdan erişime tamamen kapatılmıştır. 
 
 ---
 
