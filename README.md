@@ -19,7 +19,9 @@
 `Gizli Hesap`
 `Profil Müzik Kartı`
 `Url Üzeri Profil Fotoğraf`
+
 `Kayıt Ol | Giriş Yap`
+
 `Anonim Profil Mesaj`
 `Kayıt Olma Tarihi`
 `Profil Mesaj Beğeni`
