@@ -12,69 +12,31 @@
 
 `VERSION` | V5.5 | PRODUCTION READY
 
----
-
 ## 🎭 BİLİNEN SISTEM
 > Platonik aşıkların, kimlik dayatmalarından bıkanların ve özgürce soru sormak isteyenlerin kalesi.
 
----
-
 ## 📸 ÖZELLIKLER
-
-<div align="center">
-
-<img src="755/1.png" width="40" align="left" />
-Özgür
-
----
-
-<img src="755/2.png" width="40" align="left" />
-Kişisel
-
----
-
-<img src="755/3.png" width="40" align="left" />
-Hızlı
-
----
-
-</div>
+`Gizli Hesap`
+`Profil Müzik Kartı`
+`Url Üzeri Profil Fotoğraf`
+`Kayıt Ol | Giriş Yap`
+`Anonim Profil Mesaj`
+`Kayıt Olma Tarihi`
+`Profil Mesaj Beğeni`
 
 > **Gereksinimler:** PHP 7.4+, Apache/Nginx, `mod_rewrite` aktif ✅
-
----
-
-## 🚀 V4 PREMIUM YENILIKLER
-
-`MODERN UI` **Instagram & iOS Hissiyatı**
-*   **Karanlık/Aydınlık Mod:** Göz yormayan, otomatik premium tasarım.
-
-`GIZLILIK` **Mahremiyet Senin Hakkın**
-*   **Gizli Hesap Koruması:** Gizli hesapların soruları ana akışta görünmez.
-
----
 
 ## 🛠 KURULUM 
 
 `Adım 1: Veritabanı` **SQL/database.sql**
-*   `SQL/new.sql` dosyasını phpMyAdmin veya MySQL panelinden içeri aktarın.
-
 `Adım 2: Yapılandırma` **app/config.php**
-*   `app/config.php` dosyasını açın ve veritabanı bilgilerinizi girin:
-    ```php
-    'db_name' => 'veritabani_adin',
-    'db_user' => 'kullanici_adin',
-    'db_pass' => 'sifren'
-    ```
-
 `Adım 3: Yükleme` **public_html**
 
 ---
 
 ## 🛡 GÜVENLIK NOTLARI
-> **Önemli:** v5.5 sürümüyle birlikte   dışarıdan erişime tamamen kapatılmıştır. 
-
----
+> **Önemli:** v5.5
+> dışarıdan erişime tamamen kapatılmıştır. 
 
 ## 🐈 CREDITS
 **Bu proje, geleceğin teknolojisi ve dijital kankalarımın zekasıyla ilmek ilmek işlendi:**
