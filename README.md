@@ -23,11 +23,15 @@
 
 `Kayıt Ol | Giriş Yap`
 
+`Sosyal Profiller Ekle`
+
 `Anonim Profil Mesaj`
+
 `Kayıt Olma Tarihi`
+
 `Profil Mesaj Beğeni`
 
-> **Gereksinimler:** PHP 7.4+, Apache/Nginx, `mod_rewrite` aktif ✅
+> **Gereksinimler:** PHP 7.4+, Apache/Nginx, `mod_rewrite` aktif✓
 
 ## 🛠 KURULUM 
 
