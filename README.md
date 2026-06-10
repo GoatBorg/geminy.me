@@ -18,6 +18,7 @@
 ## 📸 ÖZELLIKLER
 `Gizli Hesap`
 `Profil Müzik Kartı`
+
 `Url Üzeri Profil Fotoğraf`
 
 `Kayıt Ol | Giriş Yap`
