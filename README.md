@@ -10,7 +10,6 @@
     <img src="https://img.shields.io/badge/WEB_ADRES-İncele-ff2d72?style=for-the-badge&logo=heart&logoColor=white" alt="Demo"/>
   </a>
   <img src="https://img.shields.io/badge/VERSION-V8.0-7c3aed?style=for-the-badge&logo=sparkles&logoColor=white"/>
-  <img src="https://img.shields.io/badge/PHP-7.4+-777bb4?style=for-the-badge&logo=php&logoColor=white"/>
   <img src="https://img.shields.io/badge/STATUS-PRODUCTION_READY-22c55e?style=for-the-badge"/>
 </p>
 
@@ -20,9 +19,14 @@
 
 > *Platonik aşıkların, kimlik dayatmalarından bıkanların, "sen kimsin lan" sorusuna "kimse" diye cevap vermek isteyenlerin kalesi.*
 
-Meta senden fotoğraf istiyor. Twitter senden telefon numarası istiyor. LinkedIn senden özgeçmiş istiyor.
+`Meta` senden fotoğraf istiyor. 
 
-**geminy.me** sadece bir kullanıcı adı istiyor. O kadar.
+`Twitter` senden telefon numarası istiyor. 
+
+`LinkedIn` senden özgeçmiş istiyor.
+
+**geminy.me** sadece bir 
+kullanıcı adı istiyor. 
 
 Anonim soru sor, anonim mesaj at, kimse bilmesin. Özgürlük bu kadar basit.
 
@@ -34,17 +38,17 @@ Anonim soru sor, anonim mesaj at, kimse bilmesin. Özgürlük bu kadar basit.
 |---|---|
 | 💬 **Anonim Soru** | Kim attı? Bilinmez. Neden attı? O da bilinmez. |
 | ❤️ **Beğeni Sistemi** | IP bazlı, giriş şart değil |
-| 👁️ **Profil Görüntülenme** | Son 7 gün grafik olarak |
+| 👁️ **Profil Görüntülenme** | Son 7 gün |
 | 🏆 **Seviye Sistemi** | Yeşil → Sarı → Mavi → Mor → ⚡ Efsane |
 | 👤 **Gizli Takip** | Takip listeni sadece sen görürsün |
 | 🔒 **Gizli Hesap** | İstersen kimse seni bulamasın |
-| 💌 **Özel Mesajlaşma** | WhatsApp hissiyatlı, ama anonim ruhlu |
-| 🔐 **2FA** | İki faktörlü doğrulama, çünkü güvenlik şakaya gelmez |
+| 💌 **Mesajlaşma** | WhatsApp hissiyatlı, ama anonim ruhlu |
+| 🔐 **2FA** | güvenlik şakaya gelmez |
 | 📧 **SMTP E-posta** | Şifre sıfırlama, hesap silme onayı |
-| 🗑️ **E-posta Onaylı Hesap Silme** | Verilerini götürürsün, iz bırakmak zorunda değilsin |
+| 🗑️ **Hesap Silme** | iz bırakmak zorunda değilsin |
 | 🎵 **Profil Müzik Kartı** | Ruhunu müzikle anlat |
 | 🔗 **Sosyal Profiller** | Instagram, TikTok, Twitter — istersen hepsini ekle |
-| 🌐 **Public API** | Scraper-style, key gerekmez, JSON döner |
+| 🌐 **Public API** | JSON döner |
 
 ---
 
@@ -53,7 +57,7 @@ Anonim soru sor, anonim mesaj at, kimse bilmesin. Özgürlük bu kadar basit.
 Yanıt verdikçe, soru aldıkça, beğeni topladıkça yükseliyorsun:
 
 ```
-Puan = (Soru × 1) + (Yanıt × 3) + (Beğeni × 2)
+Statü Seviyesi ❤️
 ```
 
 | Puan | Seviye |
@@ -122,14 +126,14 @@ Dosyaları public_html klasörüne at, işin bitti.
 ```
 ❌ "İşleme Alınamıyor" hatası
 ✅ .htaccess dosyasının sunucuda aktif olduğunu kontrol et
-   Apache: mod_rewrite açık mı?
+   
 
 ❌ Mail gitmiyor
 ✅ SMTP_PORT'u 25 yap — shared hosting'lerde 587 bloklu olur
 
 ❌ "Table already exists" SQL hatası  
 ✅ install/ klasöründeki _fixed.sql dosyasını kullan
-   (CREATE TABLE IF NOT EXISTS içerir)
+   
 
 ❌ 500 Hatası
 ✅ app/config.php'de DB bilgilerin doğru mu kontrol et
@@ -140,7 +144,9 @@ Dosyaları public_html klasörüne at, işin bitti.
 ## 🛡 Güvenlik
 
 - `.htaccess` ile `app/` klasörüne direkt erişim kapalı
+  
 - `install/` dizini production'da erişilemez
+  
 - Brute-force koruması aktif
 - Şifre sıfırlama token'ları hash'li
 - 2FA kodları bcrypt ile saklanıyor
@@ -155,10 +161,10 @@ Dosyaları public_html klasörüne at, işin bitti.
 
 | AI | Rol |
 |---|---|
-| **Claude** 🌿 | v3 → v8 mimarisi, güvenlik sistemi, API, seviye motoru, tüm kritik altyapı |
-| **Copilot** 🐾 | Kod tamamlama, küçük refactoring'ler |
-| **Gemini** 🥃 | Fikir geliştirme, alternatif yaklaşımlar |
-| **Manus AI** 🐈 | İlk prototip katkıları |
+| **Claude❤️**  | v3 → v8 mimarisi, güvenlik sistemi, API, seviye motoru, tüm kritik altyapı |
+| **Copilot🍒**  | Kod tamamlama, küçük refactoring'ler |
+| **Gemini🥃**  | Fikir geliştirme, alternatif yaklaşımlar |
+| **Manus AI🐾**  | İlk prototip katkıları |
 
 ---
 
