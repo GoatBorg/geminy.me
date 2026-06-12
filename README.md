@@ -40,6 +40,14 @@
 `Adım 3: Yükleme` **public_html**
 
 ---
+## ⚠️ Kurulum Notu 
+```
+⚠️ SMTP:
+Port 587 çalışmıyorsa
+config.php'de 
+SMTP_PORT'u 25 yap.
+Shared hosting'lerde 587 bloklu olur.
+```
 
 ## 🛡 GÜVENLIK NOTLARI
 > **Önemli:** v5.5
@@ -56,5 +64,5 @@
 ---
 
 <p align="center">
-  <b>geminy.me</b> - Özgürlüğün ve Gizliliğin Dijital Adresi ❤️🍻
+  <b>geminy.me</b> - Özgürlüğün Adresi ❤️🍻
 </p>
