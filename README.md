@@ -1,16 +1,21 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/melissaroseria/geminy.me/refs/heads/main/assets/js/775.png" alt="Geminy Banner" width="250"/>
+  <img src="https://raw.githubusercontent.com/melissaroseria/geminy.me/refs/heads/main/assets/js/775.png" alt="Geminy Banner" width="150"/>
 </p>
 
-# 💎 GEMINY.ME 
+
+## 💎 GEMINY.ME 
+**Telegram Alpha Version**
+`URL`
+```
+https://t.me/c/3592883866/10
+```
+`VERSION` | BETA | PRODUCTION READY
 
 <p align="center">
   <a href="https://geminyask.unaux.com/index.php">
     <img src="https://img.shields.io/badge/WEB_ADRES-İncele-ff2d72?style=for-the-badge&logo=heart&logoColor=white" alt="Demo"/>
   </a>
 </p>
-
-`VERSION` | V5.5 | PRODUCTION READY
 
 ## 🎭 BİLİNEN SISTEM
 > Platonik aşıkların, kimlik dayatmalarından bıkanların ve özgürce soru sormak isteyenlerin kalesi.
