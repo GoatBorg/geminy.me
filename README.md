@@ -1,11 +1,9 @@
+## 💎 GEMINY.ME
 <p align="center">
-  <img src="https://raw.githubusercontent.com/melissaroseria/geminy.me/refs/heads/main/assets/js/775.png" alt="Geminy Banner" width="150"/>
+  <img src="https://raw.githubusercontent.com/GoatBorg/geminy.me/refs/heads/main/755/stable/ios.png" alt="Geminy Banner" width="300"/>
 </p>
 
-
-## 💎 GEMINY.ME 
-**Telegram Alpha Version**
-`URL`
+**Telegram Alpha Version**`URL`
 ```
 https://t.me/c/3592883866/10
 ```
