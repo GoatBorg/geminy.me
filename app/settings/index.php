@@ -192,6 +192,21 @@ $tabs = [
     <button type="submit" class="set-save-btn">Kaydet</button>
   </form>
 
+  <!-- API Dokümantasyon Linki -->
+  <div style="margin-top:18px;">
+    <div class="set-section-label">Geliştirici</div>
+    <div class="set-group">
+      <a href="/api-docs" style="display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;color:#EEF0FF;">
+        <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,rgba(233,30,140,.15),rgba(124,58,237,.15));border:1px solid rgba(233,30,140,.25);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🔑</div>
+        <div style="flex:1;">
+          <div style="font-weight:700;font-size:.9rem;">API Dokümantasyon</div>
+          <div style="font-size:.75rem;color:#6B6F9A;margin-top:2px;">Profil ve soru verilerini JSON olarak çek</div>
+        </div>
+        <i class="bi bi-chevron-right" style="color:#6B6F9A;"></i>
+      </a>
+    </div>
+  </div>
+
   <!-- ══════════════ SOSYAL MEDYA ══════════════ -->
   <?php elseif($tab==='social'): ?>
   <form method="POST">
@@ -337,6 +352,48 @@ $tabs = [
   <div class="set-group">
     <a href="/?logout=1" class="set-danger-btn"><i class="bi bi-box-arrow-right"></i> Çıkış Yap</a>
   </div>
+
+  <div class="set-section-label" style="margin-top:22px;color:#EF4444;">Tehlikeli Bölge</div>
+  <div class="set-group">
+    <div class="set-row">
+      <div>
+        <label style="color:#EF4444;font-weight:600;">Hesabı Sil</label>
+        <p style="font-size:.78rem;color:var(--muted);margin:2px 0 0;">Tüm sorular, yanıtlar ve veriler kalıcı olarak silinir. Bu işlem geri alınamaz.</p>
+      </div>
+      <button type="button" onclick="showDeleteModal()" class="set-danger-btn" style="background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4);color:#EF4444;flex-shrink:0;">
+        <i class="bi bi-trash3"></i> Sil
+      </button>
+    </div>
+  </div>
+
+  <!-- Hesap Silme Onay Modal -->
+  <div id="deleteModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);">
+    <div style="background:linear-gradient(145deg,#13131f,#1a1a2e);border:1px solid rgba(239,68,68,.35);border-radius:22px;padding:32px 26px;max-width:360px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 0 1px rgba(239,68,68,.08);animation:modalIn .2s ease;">
+      <div style="font-size:2.2rem;margin-bottom:10px;">🗑️</div>
+      <h3 style="color:#EF4444;margin:0 0 8px;font-size:1.1rem;">Hesabını silmek istediğine emin misin?</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 20px;line-height:1.5;">Tüm sorular, yanıtlar ve veriler <strong style="color:#EF4444;">kalıcı olarak</strong> silinecek. Bu işlem geri alınamaz.</p>
+      <form method="POST" action="/">
+        <input type="hidden" name="delete_account_confirm" value="1">
+        <div style="display:flex;gap:10px;justify-content:center;">
+          <button type="button" onclick="hideDeleteModal()" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:transparent;color:var(--text);cursor:pointer;font-size:.9rem;">
+            Vazgeç
+          </button>
+          <button type="submit" style="flex:1;padding:10px;border-radius:10px;border:none;background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff;cursor:pointer;font-weight:700;font-size:.9rem;">
+            Evet, Sil
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function showDeleteModal(){ document.getElementById('deleteModal').style.display='flex'; }
+    function hideDeleteModal(){ document.getElementById('deleteModal').style.display='none'; }
+    document.getElementById('deleteModal').addEventListener('click', function(e){ if(e.target===this) hideDeleteModal(); });
+    // Modal giriş animasyonu
+    const _style = document.createElement('style');
+    _style.textContent = '@keyframes modalIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}';
+    document.head.appendChild(_style);
+  </script>
 
   <div class="set-section-label" style="margin-top:22px;color:var(--muted);">Uygulama</div>
   <div class="set-group">

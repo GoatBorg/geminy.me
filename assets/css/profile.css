@@ -223,3 +223,44 @@
     opacity: 0; transition: .3s; z-index: 9999; pointer-events: none; white-space: nowrap;
 }
 .prof-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── v8.0: Seviye Sistemi ────────────────────────────────────── */
+.prof-level-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 50px; margin: 4px 0 2px;
+  background: color-mix(in srgb, var(--lc, #22C55E) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lc, #22C55E) 40%, transparent);
+  font-size: .78rem; font-weight: 700;
+  color: var(--lc, #22C55E);
+}
+.prof-level-badge small {
+  opacity: .7; font-weight: 500; font-size: .72rem;
+}
+.prof-level-progress {
+  display: flex; align-items: center; gap: 8px;
+  margin: 6px 0 4px; font-size: .72rem; color: #6B6F9A;
+}
+.prof-level-bar {
+  flex: 1; max-width: 120px; height: 5px; border-radius: 3px;
+  background: rgba(255,255,255,.08); overflow: hidden;
+}
+.prof-level-fill {
+  height: 100%; border-radius: 3px;
+  transition: width .6s ease;
+}
+
+/* ── v8.0: Gizli Stat (sadece sahip) ───────────────────────── */
+.prof-stat-private { position: relative; }
+.prof-stat-private::after {
+  content: '🔒'; font-size: .5rem;
+  position: absolute; top: 0; right: -2px;
+}
+
+/* ── v8.0: Efsane tick animasyonu ──────────────────────────── */
+.tick-legend {
+  animation: legendPulse 2s ease-in-out infinite;
+}
+@keyframes legendPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px #FF6B3588); }
+  50% { filter: drop-shadow(0 0 10px #FF6B35cc); }
+}

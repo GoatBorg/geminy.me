@@ -1,6 +1,6 @@
 <?php
 // =============================================
-// geminy.me v5.5 — SMTP Mail Helper
+// geminy.me v6.0 — SMTP Mail Helper
 // Kodlar veritabanında HASH olarak saklanır
 // =============================================
 require_once __DIR__ . '/../../app/config.php';
@@ -83,6 +83,72 @@ function geminyMail(string $to, string $subject, string $body): bool {
     return true;
 }
 
+// ── İstek meta bilgilerini topla ─────────────────────────────
+function getRequestMeta(): array {
+    $ip        = $_SERVER['HTTP_CF_CONNECTING_IP']
+              ?? $_SERVER['HTTP_X_FORWARDED_FOR']
+              ?? $_SERVER['REMOTE_ADDR']
+              ?? 'Bilinmiyor';
+    // Birden fazla IP varsa ilkini al
+    $ip = trim(explode(',', $ip)[0]);
+
+    $ua        = $_SERVER['HTTP_USER_AGENT'] ?? 'Bilinmiyor';
+    $time      = date('d.m.Y H:i:s T');
+    $lang      = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
+    $lang      = $lang ? substr($lang, 0, 5) : 'Bilinmiyor';
+
+    // Basit cihaz/tarayıcı tespiti
+    $device = 'Masaüstü';
+    if (preg_match('/Mobile|Android|iPhone|iPad/i', $ua)) {
+        $device = preg_match('/iPad/i', $ua) ? 'Tablet' : 'Mobil';
+    }
+    $browser = 'Bilinmiyor';
+    if (preg_match('/Edg\//i', $ua))         $browser = 'Microsoft Edge';
+    elseif (preg_match('/OPR\//i', $ua))     $browser = 'Opera';
+    elseif (preg_match('/Chrome\//i', $ua))  $browser = 'Chrome';
+    elseif (preg_match('/Firefox\//i', $ua)) $browser = 'Firefox';
+    elseif (preg_match('/Safari\//i', $ua))  $browser = 'Safari';
+
+    $os = 'Bilinmiyor';
+    if (preg_match('/Windows NT/i', $ua))     $os = 'Windows';
+    elseif (preg_match('/Macintosh/i', $ua))  $os = 'macOS';
+    elseif (preg_match('/Android/i', $ua))    $os = 'Android';
+    elseif (preg_match('/iPhone|iPad/i', $ua)) $os = 'iOS';
+    elseif (preg_match('/Linux/i', $ua))      $os = 'Linux';
+
+    return compact('ip', 'time', 'device', 'browser', 'os', 'lang');
+}
+
+// ── Meta bilgi HTML bloğu oluştur ────────────────────────────
+function buildMetaBlock(array $meta, string $username = ''): string {
+    $rows = '';
+    if ($username) {
+        $rows .= '<tr><td style="padding:7px 12px;color:#8B8FA8;font-size:.78rem;white-space:nowrap;">Kullanıcı Adı</td>'
+               . '<td style="padding:7px 12px;font-weight:700;color:#EEF0FF;">@' . htmlspecialchars($username, ENT_QUOTES) . '</td></tr>';
+    }
+    $rows .= '<tr style="background:rgba(255,255,255,.03);"><td style="padding:7px 12px;color:#8B8FA8;font-size:.78rem;white-space:nowrap;">IP Adresi</td>'
+           . '<td style="padding:7px 12px;font-family:monospace;color:#00D4FF;">' . htmlspecialchars($meta['ip'], ENT_QUOTES) . '</td></tr>';
+    $rows .= '<tr><td style="padding:7px 12px;color:#8B8FA8;font-size:.78rem;white-space:nowrap;">Tarih / Saat</td>'
+           . '<td style="padding:7px 12px;color:#EEF0FF;">' . htmlspecialchars($meta['time'], ENT_QUOTES) . '</td></tr>';
+    $rows .= '<tr style="background:rgba(255,255,255,.03);"><td style="padding:7px 12px;color:#8B8FA8;font-size:.78rem;white-space:nowrap;">Cihaz</td>'
+           . '<td style="padding:7px 12px;color:#EEF0FF;">' . htmlspecialchars($meta['device'], ENT_QUOTES) . '</td></tr>';
+    $rows .= '<tr><td style="padding:7px 12px;color:#8B8FA8;font-size:.78rem;white-space:nowrap;">Tarayıcı</td>'
+           . '<td style="padding:7px 12px;color:#EEF0FF;">' . htmlspecialchars($meta['browser'], ENT_QUOTES) . '</td></tr>';
+    $rows .= '<tr style="background:rgba(255,255,255,.03);"><td style="padding:7px 12px;color:#8B8FA8;font-size:.78rem;white-space:nowrap;">İşletim Sistemi</td>'
+           . '<td style="padding:7px 12px;color:#EEF0FF;">' . htmlspecialchars($meta['os'], ENT_QUOTES) . '</td></tr>';
+
+    return <<<HTML
+<div style="margin:20px 0;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);">
+  <div style="background:rgba(255,255,255,.05);padding:9px 14px;font-size:.75rem;color:#6B6F9A;letter-spacing:.05em;text-transform:uppercase;">
+    <i>🔍</i> Talep Bilgileri
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+    {$rows}
+  </table>
+</div>
+HTML;
+}
+
 // ── Güvenli 2FA kodu oluştur & kaydet ────────────────────────
 // Düz kod ASLA veritabanına yazılmaz, sadece hash saklanır
 function generate2FACode(string $username, string $purpose = 'login'): string {
@@ -161,46 +227,137 @@ function useResetToken(string $rawToken): void {
 }
 
 // ── Mail şablonları ───────────────────────────────────────────
-function mailPasswordReset(string $to, string $name, string $resetUrl): bool {
+function mailPasswordReset(string $to, string $name, string $resetUrl, string $username = ''): bool {
     $subject = 'Şifre Sıfırlama — geminy.me';
-    $eName = htmlspecialchars($name, ENT_QUOTES);
-    $eUrl  = htmlspecialchars($resetUrl, ENT_QUOTES);
+    $eName   = htmlspecialchars($name, ENT_QUOTES);
+    $eUrl    = htmlspecialchars($resetUrl, ENT_QUOTES);
+    $meta    = getRequestMeta();
+    $metaBlock = buildMetaBlock($meta, $username);
+
     $body = <<<HTML
 <!DOCTYPE html><html><head><meta charset="UTF-8"></head>
 <body style="background:#0A0A0F;font-family:Arial,sans-serif;color:#EEF0FF;margin:0;padding:0;">
-<div style="max-width:480px;margin:40px auto;padding:32px;background:rgba(255,255,255,.05);border-radius:20px;border:1px solid rgba(233,30,140,.2);">
-  <h1 style="font-size:1.6rem;background:linear-gradient(135deg,#00D4FF,#E91E8C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 8px;">geminy.me</h1>
-  <p style="color:#B0B3D6;margin:0 0 24px;">Şifre Sıfırlama Talebi</p>
-  <p>Merhaba <strong>$eName</strong>,</p>
-  <p style="color:#B0B3D6;margin:10px 0 22px;">Şifreni sıfırlamak için aşağıdaki butona bas. Link <strong>15 dakika</strong> geçerlidir.</p>
-  <div style="text-align:center;margin:28px 0;">
-    <a href="$eUrl" style="display:inline-block;padding:15px 32px;background:linear-gradient(135deg,#E91E8C,#7C3AED);color:#fff;text-decoration:none;border-radius:14px;font-weight:700;font-size:1rem;">Şifremi Sıfırla →</a>
+<div style="max-width:500px;margin:40px auto;padding:32px;background:rgba(255,255,255,.05);border-radius:20px;border:1px solid rgba(233,30,140,.2);">
+
+  <!-- Logo & Başlık -->
+  <div style="text-align:center;margin-bottom:24px;">
+    <h1 style="font-size:1.8rem;background:linear-gradient(135deg,#00D4FF,#E91E8C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 4px;">geminy.me</h1>
+    <p style="color:#6B6F9A;font-size:.8rem;margin:0;letter-spacing:.08em;text-transform:uppercase;">Şifre Sıfırlama Talebi</p>
   </div>
-  <p style="color:#6B6F9A;font-size:.8rem;">Bu isteği sen yapmadıysan bu e-postayı görmezden gel.</p>
-  <p style="color:#6B6F9A;font-size:.75rem;word-break:break-all;">Link: $eUrl</p>
+
+  <!-- Selamlama -->
+  <p style="margin:0 0 6px;">Merhaba <strong style="color:#EEF0FF;">$eName</strong>,</p>
+  <p style="color:#B0B3D6;margin:0 0 22px;line-height:1.6;">Hesabın için bir şifre sıfırlama talebi alındı. Aşağıdaki butona tıklayarak şifreni sıfırlayabilirsin. Bu link <strong style="color:#E91E8C;">15 dakika</strong> geçerlidir.</p>
+
+  <!-- Buton -->
+  <div style="text-align:center;margin:28px 0;">
+    <a href="$eUrl" style="display:inline-block;padding:15px 36px;background:linear-gradient(135deg,#E91E8C,#7C3AED);color:#fff;text-decoration:none;border-radius:14px;font-weight:700;font-size:1rem;letter-spacing:.02em;">Şifremi Sıfırla →</a>
+  </div>
+
+  <!-- Meta Bilgiler -->
+  $metaBlock
+
+  <!-- Uyarı -->
+  <div style="background:rgba(233,30,140,.08);border:1px solid rgba(233,30,140,.2);border-radius:12px;padding:14px 16px;margin:16px 0;">
+    <p style="margin:0;font-size:.8rem;color:#B0B3D6;line-height:1.6;">
+      ⚠️ <strong>Bu isteği sen yapmadıysan</strong> bu e-postayı yoksay. Hesabın güvende, herhangi bir değişiklik yapılmadı.
+    </p>
+  </div>
+
+  <!-- Link yedek -->
+  <p style="color:#6B6F9A;font-size:.72rem;word-break:break-all;margin:12px 0 0;">Buton çalışmıyorsa: $eUrl</p>
+
   <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:24px 0;">
   <p style="color:#6B6F9A;font-size:.72rem;margin:0;text-align:center;">2026 · geminy.me · Dijital mahremiyet bir lüks değil, haktır.</p>
-</div></body></html>
+  <p style="color:#3D3F5A;font-size:.65rem;margin:6px 0 0;text-align:center;">✦ Powered by Claude · Anthropic</p>
+</div>
+</body></html>
 HTML;
     return geminyMail($to, $subject, $body);
 }
 
-function mailTwoFactorCode(string $to, string $name, string $code): bool {
+function mailTwoFactorCode(string $to, string $name, string $code, string $username = ''): bool {
     $subject = 'Giriş Doğrulama Kodu — geminy.me';
-    $eName = htmlspecialchars($name, ENT_QUOTES);
+    $eName   = htmlspecialchars($name, ENT_QUOTES);
+    $meta    = getRequestMeta();
+    $metaBlock = buildMetaBlock($meta, $username);
+
     $body = <<<HTML
 <!DOCTYPE html><html><head><meta charset="UTF-8"></head>
 <body style="background:#0A0A0F;font-family:Arial,sans-serif;color:#EEF0FF;margin:0;padding:0;">
-<div style="max-width:480px;margin:40px auto;padding:32px;background:rgba(255,255,255,.05);border-radius:20px;border:1px solid rgba(0,212,255,.2);">
-  <h1 style="font-size:1.6rem;background:linear-gradient(135deg,#00D4FF,#E91E8C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 8px;">geminy.me</h1>
-  <p style="color:#B0B3D6;margin:0 0 24px;">İki Faktörlü Doğrulama</p>
-  <p>Merhaba <strong>$eName</strong>,</p>
-  <p style="color:#B0B3D6;margin:10px 0;">Giriş doğrulama kodun:</p>
+<div style="max-width:500px;margin:40px auto;padding:32px;background:rgba(255,255,255,.05);border-radius:20px;border:1px solid rgba(0,212,255,.2);">
+
+  <!-- Logo & Başlık -->
+  <div style="text-align:center;margin-bottom:24px;">
+    <h1 style="font-size:1.8rem;background:linear-gradient(135deg,#00D4FF,#E91E8C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 4px;">geminy.me</h1>
+    <p style="color:#6B6F9A;font-size:.8rem;margin:0;letter-spacing:.08em;text-transform:uppercase;">İki Faktörlü Doğrulama</p>
+  </div>
+
+  <!-- Selamlama -->
+  <p style="margin:0 0 6px;">Merhaba <strong style="color:#EEF0FF;">$eName</strong>,</p>
+  <p style="color:#B0B3D6;margin:0 0 20px;line-height:1.6;">Hesabına giriş yapılmak isteniyor. Aşağıdaki tek kullanımlık kodu gir:</p>
+
+  <!-- Kod Kutusu -->
   <div style="font-size:2.8rem;font-weight:900;letter-spacing:14px;text-align:center;margin:24px 0;padding:22px;background:rgba(0,212,255,.08);border-radius:16px;border:1px solid rgba(0,212,255,.25);color:#00D4FF;font-family:monospace;">$code</div>
-  <p style="color:#6B6F9A;font-size:.8rem;">Bu kod <strong>10 dakika</strong> geçerlidir. Kimseyle paylaşma.</p>
+
+  <p style="color:#B0B3D6;font-size:.82rem;text-align:center;margin:0 0 20px;">Bu kod <strong style="color:#EEF0FF;">10 dakika</strong> geçerlidir. Kimseyle paylaşma.</p>
+
+  <!-- Meta Bilgiler -->
+  $metaBlock
+
+  <!-- Uyarı -->
+  <div style="background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:12px;padding:14px 16px;margin:16px 0;">
+    <p style="margin:0;font-size:.8rem;color:#B0B3D6;line-height:1.6;">
+      🛡️ <strong>Bu girişi sen yapmadıysan</strong> bu kodu kimseyle paylaşma ve hemen şifreni değiştir.
+    </p>
+  </div>
+
   <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:24px 0;">
   <p style="color:#6B6F9A;font-size:.72rem;margin:0;text-align:center;">2026 · geminy.me</p>
-</div></body></html>
+  <p style="color:#3D3F5A;font-size:.65rem;margin:6px 0 0;text-align:center;">✦ Powered by Claude · Anthropic</p>
+</div>
+</body></html>
+HTML;
+    return geminyMail($to, $subject, $body);
+}
+
+// ── Hesap Silme Doğrulama E-postası ──────────────────────────
+function mailDeleteConfirm(string $to, string $name, string $code, string $username = ''): bool {
+    $subject = 'Hesap Silme Doğrulama — geminy.me';
+    $eName   = htmlspecialchars($name, ENT_QUOTES);
+    $meta    = getRequestMeta();
+    $metaBlock = buildMetaBlock($meta, $username);
+
+    $body = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8"></head>
+<body style="background:#0A0A0F;font-family:Arial,sans-serif;color:#EEF0FF;margin:0;padding:0;">
+<div style="max-width:500px;margin:40px auto;padding:32px;background:rgba(255,255,255,.05);border-radius:20px;border:1px solid rgba(239,68,68,.25);">
+
+  <div style="text-align:center;margin-bottom:24px;">
+    <h1 style="font-size:1.8rem;background:linear-gradient(135deg,#00D4FF,#E91E8C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 4px;">geminy.me</h1>
+    <p style="color:#6B6F9A;font-size:.8rem;margin:0;letter-spacing:.08em;text-transform:uppercase;">Hesap Silme Talebi</p>
+  </div>
+
+  <p style="margin:0 0 6px;">Merhaba <strong style="color:#EEF0FF;">$eName</strong>,</p>
+  <p style="color:#B0B3D6;margin:0 0 20px;line-height:1.6;">Hesabını silmek için bir talep alındı. Devam etmek istiyorsan aşağıdaki kodu gir. Bu kod <strong style="color:#EF4444;">10 dakika</strong> geçerlidir.</p>
+
+  <div style="font-size:2.8rem;font-weight:900;letter-spacing:14px;text-align:center;margin:24px 0;padding:22px;background:rgba(239,68,68,.08);border-radius:16px;border:1px solid rgba(239,68,68,.25);color:#EF4444;font-family:monospace;">$code</div>
+
+  <p style="color:#B0B3D6;font-size:.82rem;text-align:center;margin:0 0 20px;">Kimseyle paylaşma. Hesabın ve tüm verilerin kalıcı olarak silinir.</p>
+
+  $metaBlock
+
+  <div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.15);border-radius:12px;padding:14px 16px;margin:16px 0;">
+    <p style="margin:0;font-size:.8rem;color:#B0B3D6;line-height:1.6;">
+      🛡️ <strong>Bu isteği sen yapmadıysan</strong> bu e-postayı yoksay. Hesabın güvende.
+    </p>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:24px 0;">
+  <p style="color:#6B6F9A;font-size:.72rem;margin:0;text-align:center;">2026 · geminy.me · Dijital mahremiyet bir lüks değil, haktır.</p>
+  <p style="color:#3D3F5A;font-size:.65rem;margin:6px 0 0;text-align:center;">✦ Powered by Claude · Anthropic</p>
+</div>
+</body></html>
 HTML;
     return geminyMail($to, $subject, $body);
 }

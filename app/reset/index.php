@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['req_email'])) {
         if ($user) {
             $rawToken = generateResetToken($email);
             $url = SITE_URL . '/reset?step=verify&token=' . $rawToken;
-            mailPasswordReset($email, $user['display_name'] ?? $user['username'], $url);
+            mailPasswordReset($email, $user['display_name'] ?? $user['username'], $url, $user['username']);
         }
         $success = 'Eğer bu e-posta kayıtlıysa, sıfırlama linki gönderildi.';
         $step = 'sent';
