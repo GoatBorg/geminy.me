@@ -176,10 +176,13 @@ Telegram : [Tıkla Bana](https://t.me/c/3592883866/10)
 [Realase Menü](https://github.com/GoatBorg/geminy.me/releases/)
 ```
 Lütfen En Sağlıklı Ve Fixlenmiş
-Versionlar Bu Menüde Sunulmaktadır
+Versionlar Bu Menüde
+Sunulmaktadır
 ```
-
-
+> V9.5+ Sürümler İçin Devasa
+> Güncelleme Filtre Özelliği
+> Getirildi Yoksa
+> Başımıza Çullanıyorlar
 ---
 
 <p align="center">
