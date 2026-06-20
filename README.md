@@ -167,6 +167,20 @@ Dosyaları public_html klasörüne at, işin bitti.
 | **Manus AI🐾**  | İlk prototip katkıları |
 
 ---
+### Kararlı Beta Sürümler 
+Telegram : [Tıkla Bana](https://t.me/c/3592883866/10)
+
+
+### En Güncel Versionlar 
+`Dikkat`
+[Realase Menü](https://github.com/GoatBorg/geminy.me/releases/)
+```
+Lütfen En Sağlıklı Ve Fixlenmiş
+Versionlar Bu Menüde Sunulmaktadır
+```
+
+
+---
 
 <p align="center">
   <b>geminy.me</b> — Özgürlüğün ve Gizliliğin Dijital Adresi ❤️🍻
