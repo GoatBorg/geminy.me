@@ -17,7 +17,10 @@
 
 ## 🎭 Ne Bu Şey?
 
-> *Platonik aşıkların, kimlik dayatmalarından bıkanların, "sen kimsin lan" sorusuna "kimse" diye cevap vermek isteyenlerin kalesi.*
+> *Platonik aşıkların, kimlik dayatmalarından bıkanların,
+>
+> "sen kimsin lan" sorusuna "kimse"
+> diye cevap vermek isteyenlerin kalesi.*
 
 `Meta` senden fotoğraf istiyor. 
 
@@ -161,9 +164,9 @@ Dosyaları public_html klasörüne at, işin bitti.
 
 | AI | Rol |
 |---|---|
-| **Claude❤️**  | v3 → v8 mimarisi, güvenlik sistemi, API, seviye motoru, tüm kritik altyapı |
-| **Copilot🍒**  | Kod tamamlama, küçük refactoring'ler |
-| **Gemini🥃**  | Fikir geliştirme, alternatif yaklaşımlar |
+| **Claude**  | v3 → v8 mimarisi, güvenlik sistemi, API, seviye motoru, tüm kritik altyapı |
+| **Copilot**  | Kod tamamlama, küçük refactoring'ler |
+| **Gemini**  | Fikir geliştirme, alternatif yaklaşımlar |
 | **Manus AI🐾**  | İlk prototip katkıları |
 
 ---
@@ -179,11 +182,22 @@ Lütfen En Sağlıklı Ve Fixlenmiş
 Versionlar Bu Menüde
 Sunulmaktadır
 ```
-> V9.5+ Sürümler İçin Devasa
+> `V9.5+` Sürümler İçin Devasa
 > Güncelleme Filtre Özelliği
 > Getirildi Yoksa
 > Başımıza Çullanıyorlar
----
+
+
+> `V10.0+` Sürümler İçin Devasa
+> 🎭 8 farklı mizahi mesaj havuzu yaptım, > her sayfa yüklemesinde rastgele biri çıkıyor —
+> 
+**🫠 "Hey, neden bu kadar darlıyorsun, bırak da kafasını yaşasın.**
+> 
+**🥃 "Belki kadehleri şaha kaldırıyordur, hiç müsait değildir.**
+>
+**🌿 "Şu an doğada otlanıyordur, belki de dumanlar arasında sen de kayboldun.**
+### NOT :
+**Eğerki Birinin Profilinde Bu Tarz Mesajlar Varsa Çok Sağolun Engellenmissin**
 
 <p align="center">
   <b>geminy.me</b> — Özgürlüğün ve Gizliliğin Dijital Adresi ❤️🍻
