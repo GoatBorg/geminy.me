@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/GoatBorg/geminy.me/refs/heads/main/755/stable/ios.png" alt="Geminy Banner" width="300"/>
 </p>
 
-<h1 align="center">💎 GEMINY.ME</h1>
+<h1 align="center"></h1>
 <p align="center"><i>Seni tanımıyoruz. Bu yüzden seni seviyoruz.</i></p>
 
 <p align="center">
