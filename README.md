@@ -189,18 +189,19 @@ Sunulmaktadır
 
 
 > `V10.0+` Sürümler İçin Devasa
-> 🎭 8 farklı mizahi mesaj havuzu yaptım, > her sayfa yüklemesinde rastgele biri çıkıyor —
+> 🎭 8 farklı mizahi mesaj havuzu yaptım,
+> her sayfa yüklemesinde rastgele biri çıkıyor
 > 
 **🫠 "Hey, neden bu kadar darlıyorsun, bırak da kafasını yaşasın.**
 > 
 **🥃 "Belki kadehleri şaha kaldırıyordur, hiç müsait değildir.**
 >
 **🌿 "Şu an doğada otlanıyordur, belki de dumanlar arasında sen de kayboldun.**
-### NOT :
+
+`NOT :` 
 **Eğerki Birinin Profilinde Bu Tarz Mesajlar Varsa Çok Sağolun Engellenmissin**
 
-<p align="center">
-  <b>geminy.me</b> — Özgürlüğün ve Gizliliğin Dijital Adresi ❤️🍻
+
   <br/><br/>
   <sub>
     Built with 🥃 by <a href="https://github.com/GoatBorg">GoatBorg</a>
